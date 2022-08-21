@@ -105,7 +105,7 @@ class ContactsApp extends Contacts{
                             </div>`;
     site.appendChild(container);
     this.addEventListenerBtnAdd();
-    this.show();
+    this.get();
     
     }
     findInput(){
@@ -159,11 +159,12 @@ class ContactsApp extends Contacts{
             }
         }
     }
-    show(){
+    get(){
         console.log(this.data);
         const ul=document.querySelector('.contact_book_items');
         let li='';
-        this.data.forEach((elem)=>{
+        let list=super.get;
+        list.forEach((elem)=>{
             let {id,name,email,addres,phone}=elem.get;
             console.log(id)
             li+=` <li class="contact_book_item" id='${id}'>
@@ -249,7 +250,7 @@ class ContactsApp extends Contacts{
                     let phone=inputs[3].value;
                     if(this.Verification(name) && this.VerificationEmail(email) && this.Verification(addres) &&  this.VerificationPhone(phone)){
                         this.add(name,email,addres,phone); 
-                        this.show();
+                        this.get();
                         modalWindow.remove();
                     }
                    
@@ -279,7 +280,7 @@ class ContactsApp extends Contacts{
                     let phone=inputs[3].value;
                     if(this.Verification(name) && this.VerificationEmail(email) && this.Verification(addres) && this.VerificationPhone(phone)){
                         this.edit(id,{id,name,email,addres,phone}); 
-                        this.show();
+                        this.get();
                         modalWindow.remove();
                     }
                    
@@ -297,7 +298,7 @@ class ContactsApp extends Contacts{
     }
     onRemove(id){
         this.remove(id);
-        this.show();
+        this.get();
     }
 }
 
